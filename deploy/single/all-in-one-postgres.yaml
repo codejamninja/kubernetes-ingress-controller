@@ -351,69 +351,22 @@ rules:
   - endpoints
   - nodes
   - pods
-  - secrets
-  verbs:
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
-  - nodes
-  verbs:
-  - get
-- apiGroups:
-  - ""
-  resources:
-  - services
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - "extensions"
-  resources:
-  - ingresses
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - ""
-  resources:
   - events
-  verbs:
-  - create
-  - patch
-- apiGroups:
-  - "extensions"
-  resources:
-  - ingresses/status
-  verbs:
-  - update
-- apiGroups:
-  - "configuration.konghq.com"
-  resources:
+  - secrets
+  - ingresses
   - kongplugins
+  - configmaps
   - kongcredentials
   - kongconsumers
   - kongingresses
+  - ingresses/status
+  - services
   verbs:
-  - get
   - list
   - watch
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  resourceNames:
-  # Defaults to "<election-id>-<ingress-class>"
-  # Here: "<ingress-controller-leader>-<kong>"
-  # This has to be adapted if you change either parameter
-  # when launching the kong-ingress-controller.
-  - "ingress-controller-leader-kong"
-  verbs:
-  - create
   - get
+  - create
+  - patch
   - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
